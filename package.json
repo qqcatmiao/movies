@@ -1,0 +1,17 @@
+{
+  "name": "movie-watchlist",
+  "version": "1.0.0",
+  "description": "A personal movie watchlist and discovery platform",
+  "main": "index.html",
+  "scripts": {
+    "dev": "npx http-server -p 3000",
+    "build": "echo 'Static site - no build required'",
+    "preview": "npx http-server -p 3000"
+  },
+  "keywords": ["movie", "watchlist", "supabase", "netlify"],
+  "author": "Student",
+  "license": "MIT",
+  "devDependencies": {
+    "http-server": "^14.1.1"
+  }
+}

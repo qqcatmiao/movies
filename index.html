@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>观影清单 - 发现好电影</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://unpkg.com/@supabase/supabase-js"></script>
+    <script src="sample-movies.js"></script>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <h1 class="nav-logo">🎬 观影清单</h1>
+            <div class="nav-links">
+                <a href="index.html" class="nav-link active">发现</a>
+                <a href="movie.html" class="nav-link">电影详情</a>
+                <a href="profile.html" class="nav-link">个人中心</a>
+                <div id="auth-section">
+                    <button id="login-btn" class="btn-primary">登录</button>
+                    <button id="logout-btn" class="btn-secondary" style="display: none;">登出</button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container">
+        <section class="hero">
+            <h2>发现你的下一部好电影</h2>
+            <p>记录观影经历，分享电影感悟，发现更多精彩</p>
+            <div class="search-bar">
+                <input type="text" id="search-input" placeholder="搜索电影名称...">
+                <button id="search-btn" class="btn-primary">搜索</button>
+            </div>
+        </section>
+
+        <section class="featured-section">
+            <h3>最新添加</h3>
+            <div id="new-movies" class="movies-grid"></div>
+        </section>
+
+        <section class="featured-section">
+            <h3>热门电影</h3>
+            <div id="popular-movies" class="movies-grid"></div>
+        </section>
+
+        <section class="featured-section">
+            <h3>近期观影动态</h3>
+            <div id="recent-activity" class="activity-list"></div>
+        </section>
+    </main>
+
+    <!-- 登录模态框 -->
+    <div id="login-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h3>登录观影清单</h3>
+            <form id="login-form">
+                <input type="email" id="email" placeholder="邮箱地址" required>
+                <input type="password" id="password" placeholder="密码" required>
+                <button type="submit" class="btn-primary">登录</button>
+            </form>
+            <p>还没有账号？<a href="#" id="show-signup">立即注册</a></p>
+        </div>
+    </div>
+
+    <!-- 注册模态框 -->
+    <div id="signup-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h3>注册观影清单</h3>
+            <form id="signup-form">
+                <input type="text" id="username" placeholder="用户名" required>
+                <input type="email" id="signup-email" placeholder="邮箱地址" required>
+                <input type="password" id="signup-password" placeholder="密码" required>
+                <button type="submit" class="btn-primary">注册</button>
+            </form>
+            <p>已有账号？<a href="#" id="show-login">立即登录</a></p>
+        </div>
+    </div>
+
+    <script src="sample-movies.js"></script>
+    <script src="config.js"></script>
+    <script src="auth.js"></script>
+    <script src="index-simple.js"></script>
+</body>
+</html>

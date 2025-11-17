@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>个人中心 - 观影清单</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://unpkg.com/@supabase/supabase-js"></script>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <h1 class="nav-logo">🎬 观影清单</h1>
+            <div class="nav-links">
+                <a href="index.html" class="nav-link">发现</a>
+                <a href="movie.html" class="nav-link">电影详情</a>
+                <a href="profile.html" class="nav-link active">个人中心</a>
+                <div id="auth-section">
+                    <button id="login-btn" class="btn-primary">登录</button>
+                    <button id="logout-btn" class="btn-secondary" style="display: none;">登出</button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container">
+        <section id="profile-section" class="profile-section" style="display: none;">
+            <div class="profile-header">
+                <div class="profile-avatar">
+                    <img id="avatar-img" src="https://via.placeholder.com/100" alt="头像">
+                    <button id="edit-profile-btn" class="btn-secondary">编辑资料</button>
+                </div>
+                <div class="profile-info">
+                    <h2 id="username-display">用户名</h2>
+                    <p id="user-bio">个人简介</p>
+                    <div class="stats">
+                        <div class="stat-item">
+                            <span id="watched-count">0</span>
+                            <span>已看</span>
+                        </div>
+                        <div class="stat-item">
+                            <span id="want-to-watch-count">0</span>
+                            <span>想看</span>
+                        </div>
+                        <div class="stat-item">
+                            <span id="favorite-count">0</span>
+                            <span>收藏</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tabs">
+                <button class="tab-btn active" data-tab="want-to-watch">想看</button>
+                <button class="tab-btn" data-tab="watched">已看</button>
+                <button class="tab-btn" data-tab="favorites">收藏</button>
+            </div>
+
+            <div class="tab-content">
+                <div id="want-to-watch" class="tab-pane active">
+                    <div id="want-to-watch-movies" class="movies-grid"></div>
+                </div>
+                <div id="watched" class="tab-pane">
+                    <div id="watched-movies" class="movies-grid"></div>
+                </div>
+                <div id="favorites" class="tab-pane">
+                    <div id="favorite-movies" class="movies-grid"></div>
+                </div>
+            </div>
+        </section>
+
+        <section id="login-prompt" class="login-prompt">
+            <h2>请先登录</h2>
+            <p>登录后即可查看和管理您的观影清单</p>
+            <button id="prompt-login-btn" class="btn-primary">立即登录</button>
+        </section>
+    </main>
+
+    <!-- 登录模态框 -->
+    <div id="login-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h3>登录观影清单</h3>
+            <form id="login-form">
+                <input type="email" id="email" placeholder="邮箱地址" required>
+                <input type="password" id="password" placeholder="密码" required>
+                <button type="submit" class="btn-primary">登录</button>
+            </form>
+            <p>还没有账号？<a href="#" id="show-signup">立即注册</a></p>
+        </div>
+    </div>
+
+    <!-- 注册模态框 -->
+    <div id="signup-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h3>注册观影清单</h3>
+            <form id="signup-form">
+                <input type="text" id="username" placeholder="用户名" required>
+                <input type="email" id="signup-email" placeholder="邮箱地址" required>
+                <input type="password" id="signup-password" placeholder="密码" required>
+                <button type="submit" class="btn-primary">注册</button>
+            </form>
+            <p>已有账号？<a href="#" id="show-login">立即登录</a></p>
+        </div>
+    </div>
+
+    <!-- 编辑资料模态框 -->
+    <div id="edit-profile-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h3>编辑个人资料</h3>
+            <form id="edit-profile-form">
+                <input type="text" id="edit-username" placeholder="用户名" required>
+                <input type="text" id="edit-avatar" placeholder="头像URL">
+                <textarea id="edit-bio" placeholder="个人简介"></textarea>
+                <button type="submit" class="btn-primary">保存</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="config.js"></script>
+    <script src="auth.js"></script>
+    <script src="profile.js"></script>
+</body>
+</html>
