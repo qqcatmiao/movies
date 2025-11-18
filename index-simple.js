@@ -169,33 +169,6 @@ class HomePage {
     // 绑定事件
     bindEvents() {
         console.log('绑定首页事件...');
-        
-        // 搜索功能
-        const searchBtn = document.getElementById('search-btn');
-        const searchInput = document.getElementById('search-input');
-        
-        if (searchBtn && searchInput) {
-            searchBtn.addEventListener('click', () => {
-                this.performSearch(searchInput.value);
-            });
-            
-            searchInput.addEventListener('keypress', (e) => {
-                if (e.key === 'Enter') {
-                    this.performSearch(searchInput.value);
-                }
-            });
-        }
-    }
-
-    // 执行搜索
-    performSearch(query) {
-        if (!query.trim()) {
-            alert('请输入搜索关键词');
-            return;
-        }
-        
-        // 跳转到搜索结果页面
-        window.location.href = `movie.html?search=${encodeURIComponent(query)}`;
     }
 }
 

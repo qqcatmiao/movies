@@ -62,34 +62,8 @@ class MovieDetailManager {
             
             console.log('电影列表数据:', movies);
 
-            // 处理搜索查询
-            const searchQuery = new URLSearchParams(window.location.search).get('search');
-            if (searchQuery) {
-                const searchResults = movies.filter(movie => 
-                    movie.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                    movie.director.toLowerCase().includes(searchQuery.toLowerCase())
-                );
-                this.renderMovies(searchResults, container);
-                
-                // 显示搜索查询
-                const searchQueryElement = document.getElementById('search-query');
-                if (!searchQueryElement) {
-                    // 创建搜索查询显示元素
-                    const searchHeader = document.querySelector('.search-header h2');
-                    if (searchHeader) {
-                        const queryElement = document.createElement('p');
-                        queryElement.id = 'search-query';
-                        queryElement.style.color = '#666';
-                        queryElement.style.marginTop = '10px';
-                        queryElement.innerHTML = `搜索关键词: <strong>${searchQuery}</strong>`;
-                        searchHeader.appendChild(queryElement);
-                    }
-                } else {
-                    searchQueryElement.textContent = `搜索关键词: ${searchQuery}`;
-                }
-            } else {
-                this.renderMovies(movies, container);
-            }
+            // 直接显示所有电影
+            this.renderMovies(movies, container);
         } catch (error) {
             console.error('加载电影列表失败:', error);
         }
@@ -103,10 +77,7 @@ class MovieDetailManager {
         if (movieDetails) movieDetails.style.display = 'none';
         if (moviesList) moviesList.style.display = 'block';
         
-        const searchQuery = new URLSearchParams(window.location.search).get('search');
-        if (searchQuery && moviesList) {
-            document.getElementById('search-query').textContent = searchQuery;
-        }
+
     }
 
     // 渲染电影详情
@@ -291,32 +262,6 @@ class MovieDetailManager {
     // 绑定事件
     bindEvents() {
         console.log('绑定电影详情页事件...');
-        
-        // 搜索功能 - 使用正确的元素ID
-        const searchBtn = document.getElementById('movie-search-btn');
-        const searchInput = document.getElementById('movie-search-input');
-        
-        if (searchBtn && searchInput) {
-            searchBtn.addEventListener('click', () => {
-                this.performSearch(searchInput.value);
-            });
-            
-            searchInput.addEventListener('keypress', (e) => {
-                if (e.key === 'Enter') {
-                    this.performSearch(searchInput.value);
-                }
-            });
-        }
-    }
-
-    // 执行搜索
-    performSearch(query) {
-        if (!query.trim()) {
-            alert('请输入搜索关键词');
-            return;
-        }
-        
-        window.location.href = `movie.html?search=${encodeURIComponent(query)}`;
     }
 
     // 静态方法：添加到观影清单
